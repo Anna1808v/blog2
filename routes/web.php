@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MyNameController;
+use App\Http\Controllers\MyPlaceController;
+//Route::get('/home', 'MyPlaceController@index');
+//Route::get('/home', [MyPlaceController::class, 'index']);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/my_surname', 'MySurnameController@index');
+
+Route::get('/my_city', 'MyCityController@index');
+
+Route::get('/my_age', 'MyAgeController@index');
+
+Route::get('/my_cat_name', 'MyCatNameController@index');
+
+Route::get('/my_son_name', 'MySonNameController@index');
