@@ -27,3 +27,5 @@ Route::get('/my_age', 'MyAgeController@index');
 Route::get('/my_cat_name', 'MyCatNameController@index');
 
 Route::get('/my_son_name', 'MySonNameController@index');
+
+Route::get('/say_hello', 'HelloController@index');
