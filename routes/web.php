@@ -18,16 +18,6 @@ use App\Http\Controllers\MyPlaceController;
 
 
 
-Route::get('/my_surname', 'MySurnameController@index');
+Route::get('/comments', 'CommentController@index');
+Route::get('/comments/create', 'CommentController@create');
 
-Route::get('/my_city', 'MyCityController@index');
-
-Route::get('/my_age', 'MyAgeController@index');
-
-Route::get('/my_cat_name', 'MyCatNameController@index');
-
-Route::get('/my_son_name', 'MySonNameController@index');
-
-Route::get('/say_hello', 'HelloController@index');
-
-Route::get('/today', 'TodayController@index');
