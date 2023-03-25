@@ -32,14 +32,10 @@ class CommentController extends Controller
             ]
         ];
 
-        Comment::create([
-            'title' => 'another title from IDE',
-            'content' => 'another content from IDE',
-            'image' => 'anotherImageFromIDE.jpg',
-            'likes' => 80000,
-            'is_published' => '1'
-        ]);
-
+        foreach($commentsArr as $item){
+            dd($item);
+            Comment::create($item);
+        }
         dd('created');
     }
 }
