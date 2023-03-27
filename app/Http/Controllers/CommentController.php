@@ -33,9 +33,30 @@ class CommentController extends Controller
         ];
 
         foreach($commentsArr as $item){
-            dd($item);
             Comment::create($item);
         }
         dd('created');
+    }
+
+    public function update()
+    {
+        $comment = Comment::find(2);
+
+        $comment->update([
+            'title' => 'update',
+            'content' => 'update',
+            'image' => 'update',
+            'likes' => 2,
+            'is_published' => '1'
+        ]);
+
+        dd('updated');
+    }
+
+    public function delete()
+    {
+        $comment = Comment::withTrashed()->find(22);
+        $comment->restore();
+        dd('restored');
     }
 }

@@ -20,4 +20,6 @@ use App\Http\Controllers\MyPlaceController;
 
 Route::get('/comments', 'CommentController@index');
 Route::get('/comments/create', 'CommentController@create');
+Route::get('/comments/update', 'CommentController@update');
+Route::get('/comments/delete', 'CommentController@delete');
 
