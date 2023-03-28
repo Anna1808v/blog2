@@ -23,3 +23,9 @@ Route::get('/comments/create', 'CommentController@create');
 Route::get('/comments/update', 'CommentController@update');
 Route::get('/comments/delete', 'CommentController@delete');
 
+
+Route::get('/friends', 'FriendsController@index');
+Route::get('/friends/create', 'FriendsController@create');
+Route::get('/friends/update', 'FriendsController@update');
+Route::get('/friends/delete', 'FriendsController@delete');
+
