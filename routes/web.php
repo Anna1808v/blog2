@@ -22,7 +22,8 @@ Route::get('/comments', 'CommentController@index');
 Route::get('/comments/create', 'CommentController@create');
 Route::get('/comments/update', 'CommentController@update');
 Route::get('/comments/delete', 'CommentController@delete');
-
+Route::get('/comments/first_or_create', 'CommentController@firstOrCreate');  
+Route::get('/comments/update_or_create', 'CommentController@updateOrCreate');  
 
 Route::get('/friends', 'FriendsController@index');
 Route::get('/friends/create', 'FriendsController@create');

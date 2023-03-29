@@ -59,4 +59,43 @@ class CommentController extends Controller
         $comment->restore();
         dd('restored');
     }
+
+    public function firstOrCreate()
+    {
+        $anotherComment = [
+            'title' => '1231231231',
+            'content' => 'update',
+            'image' => 'update',
+            'likes' => 2,
+            'is_published' => '1'
+        ];
+
+        $pattern = [
+            'title' => 'pattern',
+        ];
+
+        $myComment = Comment::firstOrCreate($pattern, $anotherComment);
+
+        dd($myComment);
+    }
+
+    public function updateOrCreate()
+    {
+        $updateComment = 
+        [
+            'title' => 'QWQWQupdateOrCreate',
+            'content' => 'qazqaz',
+            'image' => 'updateOrCreate update',
+            'likes' => 2233,
+            'is_published' => '1'
+        ];
+
+        $pattern = [
+            'content' => 'qazqaz',
+        ];
+
+        $comment = Comment::updateOrCreate($pattern, $updateComment);
+
+        dd('hi');
+    }
 }
