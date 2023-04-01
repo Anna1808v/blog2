@@ -29,4 +29,6 @@ Route::get('/friends', 'FriendsController@index');
 Route::get('/friends/create', 'FriendsController@create');
 Route::get('/friends/update', 'FriendsController@update');
 Route::get('/friends/delete', 'FriendsController@delete');
+Route::get('/friends/first_or_create', 'FriendsController@firstOrCreate');
+Route::get('/friends/update_or_create', 'FriendsController@updateOrCreate');
 

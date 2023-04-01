@@ -44,4 +44,39 @@ class FriendsController extends Controller
         dd('restored');
 
     }
+
+    public function firstOrCreate()
+    {
+        $newArr = [
+            'name' => 'Мирослава',
+            'birthday' => '16.03.1986',
+            'age' => 36,
+            'phone_number' => '095174125'
+        ];
+
+        $pattern = [
+            'name' => 'Мирослава'
+        ];
+
+        Friend::firstOrCreate($pattern, $newArr);
+
+        dd('finished');
+    }
+
+    public function updateOrCreate()
+    {
+        $newArr = [
+            'name' => 'Aля',
+            'birthday' => '16.03.1987',
+            'age' => 35,
+            'phone_number' => '0995556633'
+        ];
+
+        $pattern = [
+            'name' => 'Анастасия'
+        ];
+
+        Friend::updateOrCreate($pattern, $newArr);
+        dd('finished');
+    }
 }
