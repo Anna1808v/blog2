@@ -18,7 +18,7 @@ use App\Http\Controllers\MyPlaceController;
 
 
 
-Route::get('/comments', 'CommentController@index');
+Route::get('/comments', 'CommentController@index')->name('comment.index');
 Route::get('/comments/create', 'CommentController@create');
 Route::get('/comments/update', 'CommentController@update');
 Route::get('/comments/delete', 'CommentController@delete');
@@ -31,4 +31,8 @@ Route::get('/friends/update', 'FriendsController@update');
 Route::get('/friends/delete', 'FriendsController@delete');
 Route::get('/friends/first_or_create', 'FriendsController@firstOrCreate');
 Route::get('/friends/update_or_create', 'FriendsController@updateOrCreate');
+
+Route::get('/main', 'MainController@index')->name('main.index');
+Route::get('/about', 'AboutController@index')->name('about.index');
+Route::get('/contacts', 'ContactsController@index')->name('contact.index');
 

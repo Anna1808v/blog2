@@ -9,7 +9,8 @@ class CommentController extends Controller
 {
     public function index() 
     {
-        $comment = Comment::where('is_published', 1)->first();
+        $comments = Comment::all();
+        return view('comments', compact('comments'));
     }
 
     public function create()
