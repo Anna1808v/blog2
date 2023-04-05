@@ -10,33 +10,17 @@ class CommentController extends Controller
     public function index() 
     {
         $comments = Comment::all();
-        return view('comments', compact('comments'));
+        return view('comment.index', compact('comments'));
     }
 
     public function create()
     {
-        $commentsArr = [
-            [
-                'title' => 'title from IDE',
-                'content' => 'content from IDE',
-                'image' => 'imageFromIDE.jpg',
-                'likes' => 10000,
-                'is_published' => '1'
-            ],
+        return view('comment.create');
+    }
 
-            [
-                'title' => 'another title from IDE',
-                'content' => 'another content from IDE',
-                'image' => 'anotherImageFromIDE.jpg',
-                'likes' => 80000,
-                'is_published' => '1'
-            ]
-        ];
-
-        foreach($commentsArr as $item){
-            Comment::create($item);
-        }
-        dd('created');
+    public function store()
+    {
+        dd(11111111);
     }
 
     public function update()
