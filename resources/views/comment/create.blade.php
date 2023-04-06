@@ -13,7 +13,8 @@
     </div>
     <div class="mb-3">
       <label for="image" class="form-label">Image</label>
-      <input type="text" name="image" class="form-control" id="image" placeholder="image">
+      <input type="text" name="image"
+       class="form-control" id="image" placeholder="image">
     </div>
     <button type="submit" class="btn btn-primary mb-3">Create</button>
 

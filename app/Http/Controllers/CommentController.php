@@ -20,7 +20,18 @@ class CommentController extends Controller
 
     public function store()
     {
-        dd(11111111);
+        $data = request()->validate([
+            'title' => 'string',
+            'content' => 'string',
+            'image' => 'string'
+        ]);
+        Comment::create($data);
+        return redirect()->route('comment.index');
+    }
+
+    public function show(Comment $comment)
+    {
+        return view('comment.show', compact('comment'));
     }
 
     public function update()
