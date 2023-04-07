@@ -34,26 +34,26 @@ class CommentController extends Controller
         return view('comment.show', compact('comment'));
     }
 
-    public function update()
+    public function edit(Comment $comment)
     {
-        $comment = Comment::find(2);
-
-        $comment->update([
-            'title' => 'update',
-            'content' => 'update',
-            'image' => 'update',
-            'likes' => 2,
-            'is_published' => '1'
-        ]);
-
-        dd('updated');
+        return view('comment.edit', compact('comment'));
     }
 
-    public function delete()
+    public function update(Comment $comment)
     {
-        $comment = Comment::withTrashed()->find(22);
-        $comment->restore();
-        dd('restored');
+        $data = request()->validate([
+            'title' => 'string',
+            'content' => 'string',
+            'image' => 'string'
+        ]);
+        $comment->update($data);
+        return redirect()->route('comment.index', $comment->id);
+    }
+
+    public function destroy(Comment $comment)
+    {
+        $comment->delete();
+        return redirect()->route('comment.index');
     }
 
     public function firstOrCreate()
