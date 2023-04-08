@@ -42,3 +42,10 @@ Route::get('/main', 'MainController@index')->name('main.index');
 Route::get('/about', 'AboutController@index')->name('about.index');
 Route::get('/contacts', 'ContactsController@index')->name('contact.index');
 
+Route::get('/employees', 'EmployeeController@index')->name('employee.index');
+Route::get('/employees/create', 'EmployeeController@create')->name('employee.create');
+Route::post('/employees', 'EmployeeController@store')->name('employee.store');
+Route::get('/employees/{employee}', 'EmployeeController@show')->name('employee.show');
+Route::get('/employees/{employee}/edit', 'EmployeeController@edit')->name('employee.edit');
+Route::patch('/employees/{employee}', 'EmployeeController@update')->name('employee.update');
+Route::delete('/employees/{employee}', 'EmployeeController@destroy')->name('employee.delete');
