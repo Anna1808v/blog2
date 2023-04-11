@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Category;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
     public function index() 
     {
-        $comments = Comment::all();
-        return view('comment.index', compact('comments'));
+        $category = Category::find(1);
+        $comment = Comment::find(1);
+        dd($comment->category);
     }
 
     public function create()

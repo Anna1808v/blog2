@@ -23,6 +23,11 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
 
             $table->softDeletes();
+
+            $table->unsignedBigInteger('category_id')->nullable();
+
+            $table->index('category_id', 'comment_category_idx');
+            $table->foreign('category_id', 'comment_category_fk')->on('categories')->references('id');
         });
     }
 

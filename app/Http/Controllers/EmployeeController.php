@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Department;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
-        $employees = Employee::all();
-        return view('employee.index', compact('employees'));
+        $department = Department::find(5);
+        // return view('employee.index', compact('employees'));
+        dd($department->employees);
     }
 
     public function create()
