@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\Comment;
 use App\Category;
 use Illuminate\Http\Request;
@@ -10,9 +11,9 @@ class CommentController extends Controller
 {
     public function index() 
     {
-        $category = Category::find(1);
-        $comment = Comment::find(1);
-        dd($comment->category);
+        $comment = Comment::find(4);
+        $tag = Tag::find(2);
+        dd($tag->comments);
     }
 
     public function create()
