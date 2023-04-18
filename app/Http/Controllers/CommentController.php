@@ -5,20 +5,22 @@ namespace App\Http\Controllers;
 use App\Tag;
 use App\Comment;
 use App\Category;
+use App\CommentTag;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
     public function index() 
     {
-        $comment = Comment::find(4);
-        $tag = Tag::find(2);
-        dd($tag->comments);
+        $comments = Comment::all();
+        return view('comment.index', compact('comments'));
     }
 
     public function create()
     {
-        return view('comment.create');
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('comment.create', compact('categories', 'tags'));
     }
 
     public function store()
@@ -26,9 +28,22 @@ class CommentController extends Controller
         $data = request()->validate([
             'title' => 'string',
             'content' => 'string',
-            'image' => 'string'
+            'image' => 'string',
+            'category_id' => '',
+            'tags' => ''
         ]);
-        Comment::create($data);
+        
+        $tags = $data['tags'];
+        unset($data['tags']);
+        
+        $comment = Comment::create($data);
+        foreach($tags as $tag){
+            CommentTag::firstOrCreate([
+                'tag_id' => $tag,
+                'comment_id' => $comment->id
+            ]);
+        }
+
         return redirect()->route('comment.index');
     }
 
@@ -39,7 +54,8 @@ class CommentController extends Controller
 
     public function edit(Comment $comment)
     {
-        return view('comment.edit', compact('comment'));
+        $categories = Category::all();
+        return view('comment.edit', compact('comment', 'categories'));
     }
 
     public function update(Comment $comment)
@@ -47,7 +63,8 @@ class CommentController extends Controller
         $data = request()->validate([
             'title' => 'string',
             'content' => 'string',
-            'image' => 'string'
+            'image' => 'string',
+            'category_id' => ''
         ]);
         $comment->update($data);
         return redirect()->route('comment.index', $comment->id);
