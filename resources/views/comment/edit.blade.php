@@ -27,6 +27,17 @@
         @endforeach
       </select>
     </div>
+    <div class="form-group">
+      <select class="form-control" multiple aria-label="multiple select example" id="tags" name="tags[]">
+        @foreach($tags as $tag)
+          <option 
+            @foreach($comment->tags as $commentTag)
+              {{ $tag->id == $commentTag->id ? ' selected' : '' }}
+            @endforeach
+          value="{{ $tag->id }}">{{ $tag->title }}</option>
+        @endforeach
+      </select>
+    </div>
     <button type="submit" class="btn btn-primary mb-3">Update</button>
 
   </form>

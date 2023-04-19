@@ -37,25 +37,23 @@ class CommentController extends Controller
         unset($data['tags']);
         
         $comment = Comment::create($data);
-        foreach($tags as $tag){
-            CommentTag::firstOrCreate([
-                'tag_id' => $tag,
-                'comment_id' => $comment->id
-            ]);
-        }
+        $comment->tags()->attach($tags);
 
         return redirect()->route('comment.index');
     }
 
     public function show(Comment $comment)
-    {
-        return view('comment.show', compact('comment'));
+    {      
+        $tags = $comment->tags;
+        return view('comment.show', compact('comment', 'tags'));
     }
 
     public function edit(Comment $comment)
     {
         $categories = Category::all();
-        return view('comment.edit', compact('comment', 'categories'));
+        $tags = Tag::all();
+
+        return view('comment.edit', compact('comment', 'categories', 'tags'));
     }
 
     public function update(Comment $comment)
@@ -64,10 +62,17 @@ class CommentController extends Controller
             'title' => 'string',
             'content' => 'string',
             'image' => 'string',
-            'category_id' => ''
+            'category_id' => '',
+            'tags' => ''
         ]);
+
+        $tags = $data['tags'];
+        unset($data['tags']);
+
         $comment->update($data);
-        return redirect()->route('comment.index', $comment->id);
+        $comment->tags()->sync($tags);
+
+        return redirect()->route('comment.show', $comment->id);
     }
 
     public function destroy(Comment $comment)

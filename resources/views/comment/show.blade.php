@@ -1,8 +1,26 @@
 @extends('layouts.main')
 @section('content')
   <div>
-    <div> {{ $comment->id}}. {{ $comment->title }} </div>
-    <div> {{ $comment->content }} </div>
+    <div class="mb-3">
+      <h2>{{ $comment->id}}. {{ $comment->title }}</h2>
+    </div>
+    <div class="mb-3">
+      <h3>Текст комментария:</h3>
+      <div> {{ $comment->content }} </div>
+    </div>
+    <div class="mb-3">
+      <h3>Категория</h3>
+      <div> {{ $comment->category->title }} </div>
+    </div> 
+    <div class="mb-3">
+      <h3>Тэги:</h3>
+      <div>
+        @foreach($comment->tags as $tag)
+          {{ $tag->title }}
+        @endforeach
+      </div>
+    </div>
+
   </div>
 
   <div>
