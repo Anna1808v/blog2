@@ -10,14 +10,14 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $department = Department::find(5);
-        // return view('employee.index', compact('employees'));
-        dd($department->employees);
+        $employees = Employee::all();
+        return view('employee.index', compact('employees'));
     }
 
     public function create()
     {
-        return view('employee.create');
+        $departments = Department::all();
+        return view('employee.create', compact('departments'));
     }
 
     public function store()
@@ -27,7 +27,8 @@ class EmployeeController extends Controller
                 'phone_number' => 'string',
                 'passport_id' => 'string',
                 'position' => 'string',
-                'salary' => 'integer'
+                'salary' => 'integer',
+                'department_id' => ''
             ]);
         Employee::create($data);
         return redirect()->route('employee.index');
@@ -40,7 +41,8 @@ class EmployeeController extends Controller
 
     public function edit(Employee $employee)
     {
-        return view('employee.edit', compact('employee'));
+        $departments = Department::all();
+        return view('employee.edit', compact('employee', 'departments'));
     }
 
     public function update(Employee $employee)
@@ -50,10 +52,12 @@ class EmployeeController extends Controller
             'phone_number' => 'string',
             'passport_id' => 'string',
             'position' => 'string',
-            'salary' => 'integer'
+            'salary' => 'integer',
+            'department_id' => ''
         ]);
+
         $employee->update($data);
-        return redirect()->route('employee.index');
+        return redirect()->route('employee.show', $employee->id);
     } 
 
     public function destroy(Employee $employee)

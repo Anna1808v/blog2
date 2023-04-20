@@ -26,7 +26,7 @@
           value="{{ $category->id }}">{{ $category->title }}</option>
         @endforeach
       </select>
-    </div>
+    </div> 
     <div class="form-group">
       <select class="form-control" multiple aria-label="multiple select example" id="tags" name="tags[]">
         @foreach($tags as $tag)

@@ -1,10 +1,11 @@
-@extends('layouts.main')
+@extends('layoutsi.main')
 @section('content')
-    <div>{{ $employee->id }}. {{ $employee->name }}</div>
-    <div>{{ $employee->phone_number }}</div>
-    <div>{{ $employee->passport_id}}</div>
-    <div>{{ $employee->position}}</div>
-    <div>{{ $employee->salary }}</div>
+    <div>Имя: {{ $employee->id }}. {{ $employee->name }}</div>
+    <div>Номер телефона: {{ $employee->phone_number }}</div>
+    <div>Паспорт ID: {{ $employee->passport_id}}</div>
+    <div>Должность: {{ $employee->position}}</div>
+    <div>Зарплата: {{ $employee->salary }}</div>
+    <div>Отдел: {{ $employee->department->title }}</div>
 
     <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-success mb-3" >Изменить</a>
     <form action="{{ route('employee.delete', $employee->id) }}" method="post">

@@ -65,6 +65,7 @@ class CommentController extends Controller
             'category_id' => '',
             'tags' => ''
         ]);
+        dd($data['category_id']);
 
         $tags = $data['tags'];
         unset($data['tags']);

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layoutsi.main')
 @section('content')
 <a href="{{ route('employee.create') }}" class="btn btn-success mb-3" >Добавить</a>
     @foreach($employees as $employee)
