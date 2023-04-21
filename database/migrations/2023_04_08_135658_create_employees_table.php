@@ -20,6 +20,11 @@ class CreateEmployeesTable extends Migration
             $table->string('passport_id');
             $table->string('position');
             $table->integer('salary')->nullable();
+
+            $table->unsignedBigInteger('department_id')->nullable();
+            $table->index('department_id', 'employee_department_idx');
+            $table->foreign('department_id', 'employee_department_fk')->on('employees')->references('id');
+
             $table->timestamps();
         });
     }

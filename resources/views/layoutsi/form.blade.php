@@ -32,19 +32,33 @@
       <input type="number" name="salary" class="form-control" id="salary" value="{{ isset($employee) ? $employee->salary : '' }}">
     </div>
     <div class="form-group">
-        <select class="form-control" aria-label="Отдел" id="department" name="department_id">
+      <label for="department" class="form-label">Отдел</label>
+        <select class="form-control" id="department" name="department_id">
             @foreach($departments as $department)
                 <option 
                     @if(isset($employee))
                         {{ $department->id == $employee->department->id ? ' selected' : ''}}
-                        value="{{ $department->id }}">{{ $department->title }}
-                    @else
-                        id="{{ $department->id }}">{{ $department->title }}
                     @endif
+                    value="{{ $department->id }}">{{ $department->title }}  
                 </option>
             @endforeach
         </select>
     </div>    
+    <div class="form-group">
+      <label for="city" class="form-label">Город</label>
+      <select class="form-control" multiple aria-label="multiple select example" id="cities" name="cities[]">
+        @foreach($cities as $city)
+          <option
+            @if(isset($employee))
+              @foreach($employee->cities as $employeeCity)   
+                {{ $city->id == $employeeCity->id ? ' selected' : '' }}
+              @endforeach
+            @endif
+              value="{{ $city->id }}">{{ $city->city_name }}             
+          </option>
+        @endforeach    
+      </select>
+    </div>
     <button type="submit" class="btn btn-primary mb-3">Внести изменения</button>
   </form>
 </div> 

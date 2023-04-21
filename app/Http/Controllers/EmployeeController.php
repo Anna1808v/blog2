@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Employee;
 use App\Department;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class EmployeeController extends Controller
     public function create()
     {
         $departments = Department::all();
-        return view('employee.create', compact('departments'));
+        $cities = City::all();
+        return view('employee.create', compact('departments', 'cities'));
     }
 
     public function store()
@@ -28,9 +30,15 @@ class EmployeeController extends Controller
                 'passport_id' => 'string',
                 'position' => 'string',
                 'salary' => 'integer',
-                'department_id' => ''
+                'department_id' => '',
+                'cities' => ''
             ]);
-        Employee::create($data);
+        $cities = $data['cities'];
+        unset($data['cities']);
+        
+        $employee = Employee::create($data);
+        $employee->cities()->attach($cities);
+
         return redirect()->route('employee.index');
     }
 
@@ -42,7 +50,8 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         $departments = Department::all();
-        return view('employee.edit', compact('employee', 'departments'));
+        $cities = City::all();
+        return view('employee.edit', compact('employee', 'departments', 'cities'));
     }
 
     public function update(Employee $employee)
