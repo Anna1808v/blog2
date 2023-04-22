@@ -26,8 +26,8 @@ class CommentController extends Controller
     public function store()
     {
         $data = request()->validate([
-            'title' => 'string',
-            'content' => 'string',
+            'title' => 'required|string',
+            'content' => 'required|string',
             'image' => 'string',
             'category_id' => '',
             'tags' => ''

@@ -14,6 +14,10 @@
     <div class="mb-3">
       <label for="name" class="form-label">Имя</label>
       <input type="text" name="name" class="form-control" id="name" value="{{ isset($employee) ? $employee->name : '' }}">
+      
+      @error('name')
+        <p class="text-danger">{{ $message }}</p>
+      @enderror
     </div>
     <div class="mb-3">
       <label for="phone_number" class="form-label">Телефон</label>

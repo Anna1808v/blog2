@@ -62,10 +62,16 @@ class EmployeeController extends Controller
             'passport_id' => 'string',
             'position' => 'string',
             'salary' => 'integer',
-            'department_id' => ''
+            'department_id' => '',
+            'cities' => ''
         ]);
 
+        $cities = $data['cities'];
+        unset($data['cities']);
+
         $employee->update($data);
+        $employee->cities()->sync($cities);
+
         return redirect()->route('employee.show', $employee->id);
     } 
 

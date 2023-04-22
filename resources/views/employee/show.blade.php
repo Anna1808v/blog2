@@ -6,6 +6,11 @@
     <div>Должность: {{ $employee->position}}</div>
     <div>Зарплата: {{ $employee->salary }}</div>
     <div>Отдел: {{ $employee->department->title }}</div>
+    <div>Города: 
+        @foreach($employee->cities as $employeeCity)
+           {{ $employeeCity->city_name . ', ' }} 
+        @endforeach
+    </div>
 
     <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-success mb-3" >Изменить</a>
     <form action="{{ route('employee.delete', $employee->id) }}" method="post">
