@@ -17,17 +17,10 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->string('image')->nullable();
-            $table->unsignedBigInteger('likes')->nullable();
-            $table->boolean('is_published')->default(1);
-            $table->timestamps();
-
+            $table->string('image');
             $table->softDeletes();
-
-            $table->unsignedBigInteger('category_id')->nullable();
-
-            $table->index('category_id', 'comment_category_idx');
-            $table->foreign('category_id', 'comment_category_fk')->on('categories')->references('id');
+            $table->unsignedBigInteger('category_id');
+            $table->timestamps();
         });
     }
 

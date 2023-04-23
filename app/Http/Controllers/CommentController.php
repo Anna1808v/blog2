@@ -12,7 +12,10 @@ class CommentController extends Controller
 {
     public function index() 
     {
-        $comments = Comment::all();
+        $comments = Comment::find(1);
+        $tags = Tag::find(2);
+        $category = Category::find(1);
+        dd($tags->comments);
         return view('comment.index', compact('comments'));
     }
 

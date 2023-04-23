@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EditColumnCommentContentToCommentsTable extends Migration
+class CreateCommentTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class EditColumnCommentContentToCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('comments', function (Blueprint $table) {
-            $table->renameColumn('comment_content', 'content');
+        Schema::create('comment_tag', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('comment_id');
+            $table->unsignedBigInteger('tag_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class EditColumnCommentContentToCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('comments', function (Blueprint $table) {
-            $table->renameColumn('content', 'comment_content');
-        });
+        Schema::dropIfExists('comment_tag');
     }
 }
