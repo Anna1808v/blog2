@@ -8,7 +8,7 @@
     <div>Отдел: {{ $employee->department->title }}</div>
     <div>Города: 
         @foreach($employee->cities as $employeeCity)
-           {{ $employeeCity->city_name . ', ' }} 
+           {{ $employeeCity->title }} 
         @endforeach
     </div>
 

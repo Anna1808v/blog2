@@ -9,6 +9,6 @@ class Department extends Model
 {
     public function employees()
     {
-        return $this->hasMany(Employee::class, 'department_id', 'id');
+        return $this->hasMany(Employee::class);
     }
 }

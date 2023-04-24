@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCityEmployeesTable extends Migration
+class CreateEmployeeCityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,11 @@ class CreateCityEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('city_employees', function (Blueprint $table) {
+        Schema::create('employee_city', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('employee_id');
             $table->unsignedBigInteger('city_id');
-
-            $table->index('employee_id', 'employee_city_employee_idx');
-            $table->index('city_id', 'employee_city_city_idx');
-
-            $table->foreign('employee_id', 'employee_city_employee_fk')->on('employees')->references('id');
-            $table->foreign('city_id', 'employee_city_city_fk')->on('cities')->references('id');
 
             $table->timestamps();
         });
@@ -36,6 +30,6 @@ class CreateCityEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('city_employees');
+        Schema::dropIfExists('employee_city');
     }
 }

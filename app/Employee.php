@@ -10,18 +10,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Employee extends Model
 {
     use SoftDeletes;
-
-    protected $table = 'employees';
-    protected $guarded = [];
+    protected $guarded = false;
 
     public function department()
     {
-        return $this->belongsTo(Department::class, 'department_id', 'id');
+        return $this->belongsTo(Department::class);
     }
 
     public function cities()
     {
-        return $this->belongsToMany(City::class, 'city_employees', 'employee_id', 'city_id');
+        return $this->belongsToMany(City::class);
     }
 }
-

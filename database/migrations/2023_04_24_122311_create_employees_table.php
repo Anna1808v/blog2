@@ -16,15 +16,15 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('telephone');
+            $table->string('phone_number');
             $table->string('passport_id');
             $table->string('position');
-            $table->integer('salary')->nullable();
+            $table->string('salary');
 
-            $table->unsignedBigInteger('department_id')->nullable();
-            $table->index('department_id', 'employee_department_idx');
-            $table->foreign('department_id', 'employee_department_fk')->on('employees')->references('id');
+            $table->softDeletes();
 
+            $table->unsignedBigInteger('department_id');
+            
             $table->timestamps();
         });
     }

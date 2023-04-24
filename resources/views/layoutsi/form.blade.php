@@ -71,7 +71,7 @@
     </div>
 
     <div class="form-group">
-      <label for="city" class="form-label">Город</label>
+      <label for="cities" class="form-label">Город</label>
       <select class="form-control" multiple aria-label="multiple select example" id="cities" name="cities[]">
         @foreach($cities as $city)
           <option
@@ -80,7 +80,7 @@
                 {{ $city->id == $employeeCity->id ? ' selected' : '' }}
               @endforeach
             @endif
-              value="{{ $city->id }}">{{ $city->city_name }}             
+              value="{{ $city->id }}">{{ $city->title }}             
           </option>
         @endforeach    
       </select>

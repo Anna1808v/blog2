@@ -12,6 +12,9 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::all();
+        $department = Department::find(3);
+        $cities = City::find(1);
+
         return view('employee.index', compact('employees'));
     }
 
@@ -44,13 +47,15 @@ class EmployeeController extends Controller
 
     public function show(Employee $employee)
     {
-        return view('employee.show', compact('employee'));
+        $cities = $employee->cities;
+        return view('employee.show', compact('employee', 'cities'));
     }
 
     public function edit(Employee $employee)
     {
         $departments = Department::all();
         $cities = City::all();
+
         return view('employee.edit', compact('employee', 'departments', 'cities'));
     }
 
@@ -61,7 +66,7 @@ class EmployeeController extends Controller
             'phone_number' => 'required|string',
             'passport_id' => 'required|string',
             'position' => 'required|string',
-            'salary' => 'required|integer',
+            'salary' => 'required|string',
             'department_id' => '',
             'cities' => ''
         ]);
