@@ -19,22 +19,43 @@
         <p class="text-danger">{{ $message }}</p>
       @enderror
     </div>
+
     <div class="mb-3">
       <label for="phone_number" class="form-label">Телефон</label>
       <input type="text" name="phone_number" class="form-control" id="phone_number" value="{{ isset($employee) ? $employee->phone_number : '' }}">
+      
+      @error('phone_number')
+        <p class="text-danger">{{ $message }}</p>
+      @enderror
     </div>
+
     <div class="mb-3">
       <label for="passport_id" class="form-label">ID паспорта</label>
       <input type="text" name="passport_id" class="form-control" id="passport_id" value="{{ isset($employee) ? $employee->passport_id : '' }}">
+    
+      @error('passport_id')
+        <p class="text-danger">{{ $message }}</p>
+      @enderror
     </div>
+
     <div class="mb-3">
       <label for="position" class="form-label">Должность</label>
       <input type="text" name="position" class="form-control" id="position" value="{{ isset($employee) ? $employee->position : '' }}">
+    
+      @error('position')
+        <p class="text-danger">{{ $message }}</p>
+      @enderror
     </div>
+
     <div class="mb-3">
       <label for="salary" class="form-label">Зарплата</label>
       <input type="number" name="salary" class="form-control" id="salary" value="{{ isset($employee) ? $employee->salary : '' }}">
+    
+      @error('salary')
+        <p class="text-danger">{{ $message }}</p>
+      @enderror
     </div>
+
     <div class="form-group">
       <label for="department" class="form-label">Отдел</label>
         <select class="form-control" id="department" name="department_id">
@@ -47,7 +68,8 @@
                 </option>
             @endforeach
         </select>
-    </div>    
+    </div>
+
     <div class="form-group">
       <label for="city" class="form-label">Город</label>
       <select class="form-control" multiple aria-label="multiple select example" id="cities" name="cities[]">
@@ -63,7 +85,9 @@
         @endforeach    
       </select>
     </div>
+
     <button type="submit" class="btn btn-primary mb-3">Внести изменения</button>
+
   </form>
 </div> 
 @endsection
