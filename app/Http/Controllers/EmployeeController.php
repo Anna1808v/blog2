@@ -36,14 +36,20 @@ class EmployeeController extends Controller
                 'department_id' => '',
                 'cities' => ''
             ]);
-        $cities = $data['cities'];
-        unset($data['cities']);
-        
-        $employee = Employee::create($data);
-        $employee->cities()->attach($cities);
 
+        $employee = Employee::create($data);
+
+        if(isset($data['cities']))
+        {
+            $cities = $data['cities'];
+            unset($data['cities']);
+            $employee->cities()->attach($cities);
+        }
+        
         return redirect()->route('employee.index');
+ 
     }
+
 
     public function show(Employee $employee)
     {
@@ -73,9 +79,8 @@ class EmployeeController extends Controller
 
         $cities = $data['cities'];
         unset($data['cities']);
-
-        $employee->update($data);
         $employee->cities()->sync($cities);
+        $employee->update($data);
 
         return redirect()->route('employee.show', $employee->id);
     } 

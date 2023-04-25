@@ -17,14 +17,15 @@ use App\Http\Controllers\MyPlaceController;
 */
 
 
-
-Route::get('/comments', 'CommentController@index')->name('comment.index');
-Route::get('/comments/create', 'CommentController@create')->name('comment.create');
-Route::post('/comments', 'CommentController@store')->name('comment.store');
-Route::get('/comments/{comment}', 'CommentController@show')->name('comment.show');
-Route::get('/comments/{comment}/edit', 'CommentController@edit')->name('comment.edit');
-Route::patch('/comments/{comment}', 'CommentController@update')->name('comment.update');
-Route::delete('/comments/{comment}', 'CommentController@destroy')->name('comment.delete');
+Route::group(['namespace' => 'Comment'], function () {
+    Route::get('/comments', 'IndexController')->name('comment.index');
+    Route::get('/comments/create', 'CreateController')->name('comment.create');
+    Route::post('/comments', 'StoreController')->name('comment.store');
+    Route::get('/comments/{comment}', 'ShowController')->name('comment.show');
+    Route::get('/comments/{comment}/edit', 'EditController')->name('comment.edit');
+    Route::patch('/comments/{comment}', 'UpdateController')->name('comment.update');
+    Route::delete('/comments/{comment}', 'DestroyController')->name('comment.delete');
+});
 
 Route::get('/comments/update', 'CommentController@update');
 Route::get('/comments/delete', 'CommentController@delete');
