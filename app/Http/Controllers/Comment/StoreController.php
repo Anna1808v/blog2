@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Comment;
 
 use App\Comment;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Comment\StoreRequest;
 
 class StoreController extends Controller
 {
@@ -14,21 +14,19 @@ class StoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(StoreRequest $request)
     {
-        $data = request()->validate([
-            'title' => 'required|string',
-            'content' => 'required|string',
-            'image' => 'string',
-            'category_id' => '',
-            'tags' => ''
-        ]);
+        $data = $request->validated();
         
-        $tags = $data['tags'];
-        unset($data['tags']);
+        if(isset($data['tags'])){
+            $tags = $data['tags'];
+            unset($data['tags']);
+        }        
         
         $comment = Comment::create($data);
-        $comment->tags()->attach($tags);
+        if(isset($tags)){
+            $comment->tags()->attach($tags);
+        }
         return redirect()->route('comment.index');
     }
 }
