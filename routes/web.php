@@ -27,26 +27,17 @@ Route::group(['namespace' => 'Comment'], function () {
     Route::delete('/comments/{comment}', 'DestroyController')->name('comment.delete');
 });
 
-Route::get('/comments/update', 'CommentController@update');
-Route::get('/comments/delete', 'CommentController@delete');
-Route::get('/comments/first_or_create', 'CommentController@firstOrCreate');  
-Route::get('/comments/update_or_create', 'CommentController@updateOrCreate');  
-
-Route::get('/friends', 'FriendsController@index');
-Route::get('/friends/create', 'FriendsController@create');
-Route::get('/friends/update', 'FriendsController@update');
-Route::get('/friends/delete', 'FriendsController@delete');
-Route::get('/friends/first_or_create', 'FriendsController@firstOrCreate');
-Route::get('/friends/update_or_create', 'FriendsController@updateOrCreate');
+Route::group(['namespace' => 'Employee'], function () {
+    Route::get('/employees', 'IndexController')->name('employee.index');
+    Route::get('/employees/create', 'CreateController')->name('employee.create');
+    Route::post('/employees', 'StoreController')->name('employee.store');
+    Route::get('/employees/{employee}', 'ShowController')->name('employee.show');
+    Route::get('/employees/{employee}/edit', 'EditController')->name('employee.edit');
+    Route::patch('/employees/{employee}', 'UpdateController')->name('employee.update');
+    Route::delete('/employees/{employee}', 'DestroyController')->name('employee.delete');
+});
 
 Route::get('/main', 'MainController@index')->name('main.index');
 Route::get('/about', 'AboutController@index')->name('about.index');
 Route::get('/contacts', 'ContactsController@index')->name('contact.index');
 
-Route::get('/employees', 'EmployeeController@index')->name('employee.index');
-Route::get('/employees/create', 'EmployeeController@create')->name('employee.create');
-Route::post('/employees', 'EmployeeController@store')->name('employee.store');
-Route::get('/employees/{employee}', 'EmployeeController@show')->name('employee.show');
-Route::get('/employees/{employee}/edit', 'EmployeeController@edit')->name('employee.edit');
-Route::patch('/employees/{employee}', 'EmployeeController@update')->name('employee.update');
-Route::delete('/employees/{employee}', 'EmployeeController@destroy')->name('employee.delete');
