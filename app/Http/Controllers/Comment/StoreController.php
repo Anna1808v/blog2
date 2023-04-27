@@ -18,15 +18,8 @@ class StoreController extends Controller
     {
         $data = $request->validated();
         
-        if(isset($data['tags'])){
-            $tags = $data['tags'];
-            unset($data['tags']);
-        }        
-        
-        $comment = Comment::create($data);
-        if(isset($tags)){
-            $comment->tags()->attach($tags);
-        }
+        $this->service->store($data);
+       
         return redirect()->route('comment.index');
     }
 }

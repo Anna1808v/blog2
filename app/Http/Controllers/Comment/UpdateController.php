@@ -17,16 +17,9 @@ class UpdateController extends Controller
     public function __invoke(UpdateRequest $request, Comment $comment)
     {
         $data = $request->validated();
-        
-        if(isset($data['tags'])){
-            $tags = $data['tags'];
-            unset($data['tags']);
-            $comment->update($data);
-            $comment->tags()->sync($tags);
-        } else {
-            $comment->update($data);
-            $comment->tags()->detach();
-        }
+       
+        $this->service->update($comment, $data);
+       
         return redirect()->route('comment.show', $comment->id);
     }
 }
