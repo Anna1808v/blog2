@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Employee;
 use App\Employee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Employee\UpdateRequest;
 
 class UpdateController extends Controller
 {
@@ -14,23 +15,20 @@ class UpdateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, Employee $employee)
+    public function __invoke(UpdateRequest $request, Employee $employee)
     {
-        $data = request()->validate([
-            'name' => 'required|string',
-            'phone_number' => 'required|string',
-            'passport_id' => 'required|string',
-            'position' => 'required|string',
-            'salary' => 'required|string',
-            'department_id' => '',
-            'cities' => ''
-        ]);
+        $data = $request->validated();
 
-        $cities = $data['cities'];
-        unset($data['cities']);
-        $employee->cities()->sync($cities);
-        $employee->update($data);
-
+        if(isset($data['cities'])){
+            $cities = $data['cities'];
+            unset($data['cities']);
+            $employee->cities()->sync($cities);
+            $employee->update($data);
+        } else {
+            $employee->cities()->detach();
+            $employee->update($data);
+        }
+        
         return redirect()->route('employee.show', $employee->id);
     }
 }
