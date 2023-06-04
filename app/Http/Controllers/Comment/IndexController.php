@@ -16,7 +16,7 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $comments = Comment::all();
+        $comments = Comment::paginate(10);
         
         return view('comment.index', compact('comments'));
     }

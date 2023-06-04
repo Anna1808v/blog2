@@ -10,4 +10,8 @@
       </div>
     @endforeach
   </div>
+
+  <div class="mb-3">
+    {{ $comments->links() }}
+  </div>
 @endsection

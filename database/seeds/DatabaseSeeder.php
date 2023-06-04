@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
 
         factory(Category::class)->times(80)->create();
         $tags = factory(Tag::class)->times(200)->create();
-        $comments = factory(Comment::class)->times(100)->create();    
+        $comments = factory(Comment::class)->times(300)->create();    
 
         foreach($comments as $comment){
             $tagsIds = $tags->random(5)->pluck('id');
