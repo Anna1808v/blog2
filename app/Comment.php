@@ -4,12 +4,13 @@ namespace App;
 
 use App\Tag;
 use App\Category;
+use App\Http\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
-    use SoftDeletes;
+    use Filterable;
+
     protected $guarded = false;
 
     public function category()
