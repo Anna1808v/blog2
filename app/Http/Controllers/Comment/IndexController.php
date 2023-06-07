@@ -23,7 +23,6 @@ class IndexController extends Controller
         $filter = app()->make(CommentFilter::class, ['queryParams' => array_filter($data)]);
         //$comments = Comment::paginate(10);
         $comments = Comment::filter($filter)->paginate(10);
-        dd($comments);
         
         return view('comment.index', compact('comments'));
     }

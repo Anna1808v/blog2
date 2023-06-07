@@ -12,6 +12,6 @@
   </div>
 
   <div class="mb-3">
-    {{ $comments->links() }}
+    {{ $comments->withQueryString()->links() }}
   </div>
 @endsection
