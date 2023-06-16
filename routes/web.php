@@ -27,6 +27,12 @@ Route::group(['namespace' => 'Comment'], function () {
     Route::delete('/comments/{comment}', 'DestroyController')->name('comment.delete');
 });
 
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::group(['namespace' => 'Comment'], function () {
+        Route::get('/comment', 'IndexController')->name('admin.comment.index');
+    });
+});
+
 Route::group(['namespace' => 'Employee'], function () {
     Route::get('/employees', 'IndexController')->name('employee.index');
     Route::get('/employees/create', 'CreateController')->name('employee.create');
@@ -36,6 +42,7 @@ Route::group(['namespace' => 'Employee'], function () {
     Route::patch('/employees/{employee}', 'UpdateController')->name('employee.update');
     Route::delete('/employees/{employee}', 'DestroyController')->name('employee.delete');
 });
+
 
 Route::get('/main', 'MainController@index')->name('main.index');
 Route::get('/about', 'AboutController@index')->name('about.index');
