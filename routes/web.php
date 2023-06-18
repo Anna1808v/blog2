@@ -30,6 +30,8 @@ Route::group(['namespace' => 'Comment'], function () {
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::group(['namespace' => 'Comment'], function () {
         Route::get('/comment', 'IndexController')->name('admin.comment.index');
+        Route::get('/comment/create', 'CreateController')->name('admin.comment.create');
+        Route::post('/comment', 'StoreController')->name('admin.comment.store');
     });
 });
 

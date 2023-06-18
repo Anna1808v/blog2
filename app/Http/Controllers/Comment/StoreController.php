@@ -6,7 +6,7 @@ use App\Comment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Comment\StoreRequest;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     /**
      * Handle the incoming request.
@@ -17,9 +17,9 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-        
+
         $this->service->store($data);
-       
+
         return redirect()->route('comment.index');
     }
 }
