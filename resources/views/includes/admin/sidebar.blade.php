@@ -4,7 +4,7 @@
 with font-awesome or any other icon font library -->
         <li class="nav-header">ADMIN PANEL</li>
         <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+            <a href="admin/comment" class="nav-link">
                 <i class="fa-regular far fa-comment"></i>
                 <p>
                     Comments

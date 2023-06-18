@@ -7,7 +7,7 @@
     <div>
         @foreach($comments as $comment)
             <div>
-                <a href="{{ route('comment.show', $comment->id) }}">{{ $comment->id}}. {{ $comment->title }}</a>
+                <a href="{{ route('admin.comment.show', $comment->id) }}">{{ $comment->id}}. {{ $comment->title }}</a>
             </div>
         @endforeach
     </div>

@@ -6,7 +6,6 @@ use App\Comment;
 use App\Http\Filters\CommentFilter;
 use App\Http\Requests\Comment\FilterRequest;
 use Illuminate\Http\Response;
-use App\Http\Controllers\Admin\Comment\BaseController;
 
 class IndexController extends BaseController
 {
