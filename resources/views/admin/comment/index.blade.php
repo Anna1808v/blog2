@@ -1,5 +1,4 @@
 @extends('layouts.admin')
-
 @section('content')
     <div>
         <a href="{{ route('admin.comment.create') }}" class="btn btn-success mb-3">Create comment</a>
@@ -16,3 +15,4 @@
         {{ $comments->withQueryString()->links() }}
     </div>
 @endsection
+

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 @section('content')
 <div>
   <form action="{{ route('admin.comment.update', $comment->id) }}" method="post">

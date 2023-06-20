@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/comment/create', 'CreateController')->name('admin.comment.create');
         Route::post('/comment', 'StoreController')->name('admin.comment.store');
         Route::get('/comment/{comment}', 'ShowController')->name('admin.comment.show');
+        Route::get('comment/{comment}/edit', 'EditController')->name('admin.comment.edit');
         Route::patch('comment/{comment}', 'UpdateController')->name('admin.comment.update');
         Route::delete('/comment/{comment}', 'DestroyController')->name('admin.comment.delete');
     });

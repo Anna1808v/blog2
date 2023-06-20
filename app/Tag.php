@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    public function comments()
+    public function comments(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Comment::class);
     }
+
 }

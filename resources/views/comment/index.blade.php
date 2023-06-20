@@ -2,7 +2,7 @@
 @section('content')
   <div>
     <a href="{{ route('comment.create') }}" class="btn btn-success mb-3">Create comment</a>
-  </div>  
+  </div>
   <div>
     @foreach($comments as $comment)
       <div>

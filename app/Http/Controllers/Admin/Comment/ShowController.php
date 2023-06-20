@@ -10,8 +10,8 @@ class ShowController extends BaseController
 {
     public function __invoke(Request $request, Comment $comment)
     {
-        $tags = $comment->tag;
+        $tags = $comment->tags;
 
-        return view('admin.comment.show', compact('comment', 'tags'));
+        return view('admin.comment.show', compact('comment',  'tags'));
     }
 }
