@@ -16,6 +16,9 @@ use App\Http\Controllers\MyPlaceController;
 |
 */
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Comment'], function () {
     Route::get('/comments', 'IndexController')->name('comment.index');
@@ -27,7 +30,7 @@ Route::group(['namespace' => 'Comment'], function () {
     Route::delete('/comments/{comment}', 'DestroyController')->name('comment.delete');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::group(['namespace' => 'Comment'], function () {
         Route::get('/comment', 'IndexController')->name('admin.comment.index');
         Route::get('/comment/create', 'CreateController')->name('admin.comment.create');
@@ -53,4 +56,6 @@ Route::group(['namespace' => 'Employee'], function () {
 Route::get('/main', 'MainController@index')->name('main.index');
 Route::get('/about', 'AboutController@index')->name('about.index');
 Route::get('/contacts', 'ContactsController@index')->name('contact.index');
+
+
 

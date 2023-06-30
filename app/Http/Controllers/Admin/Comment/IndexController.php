@@ -12,10 +12,13 @@ class IndexController extends BaseController
     public function __invoke(FilterRequest $request)
     {
         $data = $request->validated();
-        //$filter = app()->make(CommentFilter::class, ['queryParams' => array_filter($data)]);
-        $comments = Comment::paginate(10);
 
+        //$filter = app()->make(CommentFilter::class, ['queryParams' => array_filter($data)]);
         //$comments = Comment::filter($filter)->paginate(10);
+
+        $comments = Comment::paginate(10);
+//        $commentsCount = $comments->global();
+//        dd($commentsCount);
 
         return view('admin.comment.index', compact('comments'));
     }
